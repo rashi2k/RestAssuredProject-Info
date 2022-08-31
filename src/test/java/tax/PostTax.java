@@ -20,8 +20,8 @@ public class PostTax extends BaseTest {
 	private String countryName;
 
 	//test tax data for create  the tax pay load 
-	String taxTypeId = String.valueOf((char) (new Random().nextInt(26) + 'A'));
-	String taxTypeCode = taxTypeId + ((int) (Math.random() * 9999));
+	String taxTypeId = null; //String.valueOf((char) (new Random().nextInt(26) + 'A'));
+	String taxTypeCode =  "" +((int) (Math.random() * 9999));
 	String taxType = "AUT_TAX_" + ((int) (Math.random() * 99999));
 	boolean isActive = true;
 
@@ -42,16 +42,16 @@ public class PostTax extends BaseTest {
 		String response = given().log().all().header("Content-Type", "application/json")
 				.header("Accept", "application/json").header("Authorization", "Bearer " + System.getProperty("token"))
 				.body(Payloads.addTax(taxTypeId , taxTypeCode, taxType, isActive, countryId, countryName)).when().post("/control-center/tax").then().log().all()
-				.assertThat().statusCode(200).extract().response().asString();
+				.assertThat().statusCode(201).extract().response().asString();
 
 		JsonPath jsonpath = ReusableMathods.rowToJson(response);
 		
-		Assert.assertEquals(jsonpath.getInt("result.taxTypeId"), taxTypeId);
-		Assert.assertEquals(jsonpath.getInt("result.taxTypeCode"), taxTypeCode);
-		Assert.assertEquals(jsonpath.getInt("result.taxType"), taxType);
-		Assert.assertEquals(jsonpath.getInt("result.isActive"), isActive);
-		Assert.assertEquals(jsonpath.getInt("result.countryId"), countryId);
-		Assert.assertEquals(jsonpath.getInt("result.countryName"), countryName);
+		Assert.assertNotEquals(jsonpath.getString("result.taxTypeId"), taxTypeId);
+		Assert.assertEquals(jsonpath.get("result.taxTypeCode"), taxTypeCode);
+		Assert.assertEquals(jsonpath.get("result.taxType"), taxType);
+		Assert.assertEquals(jsonpath.get("result.isActive"), isActive);
+		Assert.assertEquals(jsonpath.get("result.countryId"), countryId);
+		Assert.assertEquals(jsonpath.get("result.countryName"), countryName);
 
 	}
 
