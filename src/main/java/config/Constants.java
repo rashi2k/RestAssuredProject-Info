@@ -1,7 +1,7 @@
 package config;
 
 public class Constants {
-	public static String baseURL = "https://infoinsqa.informaticsint.com/api/v1";
-	public static String username = "infoinsadmin";
-	public static String password = "root@ibu";
+	public static String baseURL = "https://<base_url>/api/v1";
+	public static String username = "username";
+	public static String password = "password";
 }
