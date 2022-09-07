@@ -9,7 +9,6 @@ public class Payloads {
 				"}";
 	}
 	
-
 	public static String logout(String refreshToken) {
 		return "{\r\n" + 
 				"  \"refreshToken\": \""+ refreshToken+"\",\r\n" + 
@@ -17,8 +16,6 @@ public class Payloads {
 				"}";
 	}
 
-
-	
 	public static String addTax(String code, String taxTypeCode, String taxType, boolean isActive, int countryId,
 			String countryName) {
 		return " {\r\n" + 

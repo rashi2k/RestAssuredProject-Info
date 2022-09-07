@@ -15,7 +15,6 @@ import io.restassured.path.json.JsonPath;
 
 public class PostTax extends BaseTest {
 
-	
 	private int countryId;
 	private String countryName;
 
