@@ -8,6 +8,7 @@ public class Payloads {
 				"  \"password\": \""+password+"\"\r\n" + 
 				"}";
 	}
+	
 
 	public static String logout(String refreshToken) {
 		return "{\r\n" + 
